@@ -5,34 +5,37 @@ class Contacts extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      contacts: []
+      contacts: [],
+      loading: true
     };
     this.fetchContacts = this.fetchContacts.bind(this);
-  }
-
-  fetchContacts() {
-    // this.setState({
-    //   contacts: [{name: 'gedion'}, {name: 'jacky'}]
-    // });
-    let url = 'https://s3.amazonaws.com/technical-challenge/Contacts_v2.json';
-    axios.get(url).then((response) => {
-      const contacts = response.data;
-      // console.log(contacts);
-      this.setState({contacts});
-    });
   }
 
   componentDidMount(){
     this.fetchContacts();
   }
 
+  fetchContacts() {
+    // Normally this would be done with a redux action, but I thought
+    // implementing a full redux would've been overkill for this project.
+    const url = 'https://s3.amazonaws.com/technical-challenge/Contacts_v2.json';
+    axios.get(url).then((response) => {
+      const contacts = response.data;
+      this.setState({contacts, loading: false});
+    });
+  }
+
+  renderLoading() {
+    return <div>Loading...</div>;
+  }
+
   render() {
-    const { contacts } = this.state;
-    console.log(contacts);
+    const { contacts, loading } = this.state;
     return(
       <div>
         <ul>
-          {contacts.map( (contact) => {
+          {loading ? this.renderLoading :
+          contacts.map( (contact) => {
               return(<li key={contact.birthdate}>{contact.name}</li>);
             })
           }
