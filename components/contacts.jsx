@@ -44,8 +44,8 @@ class Contacts extends React.Component {
       <div>
         <ul>
           {loading ? this.renderLoading :
-            contacts.map( (contact) => {
-              return(<li key={contact.birthdate}
+            contacts.map( (contact, idx) => {
+              return(<li key={idx}
                 onClick={this.handleClick.bind(this, contact)}>
                 <ContactsListItem contact={contact} />
               </li>);
