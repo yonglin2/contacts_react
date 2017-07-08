@@ -7,9 +7,11 @@ class Contacts extends React.Component {
     super(props);
     this.state = {
       contacts: [],
-      loading: true
+      loading: true,
+      person: null
     };
     this.fetchContacts = this.fetchContacts.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount(){
@@ -30,15 +32,22 @@ class Contacts extends React.Component {
     return <div>Loading...</div>;
   }
 
+  handleClick(contact) {
+    this.setState({person: contact});
+  }
+
   render() {
     const { contacts, loading } = this.state;
+    console.log(this.state);
     return(
       <div>
         <ul>
           {loading ? this.renderLoading :
             contacts.map( (contact) => {
-              return(<ContactsListItem
-                key={contact.birthdate} contact={contact} />);
+              return(<li key={contact.birthdate}
+                onClick={this.handleClick.bind(this, contact)}>
+                <ContactsListItem contact={contact} />
+              </li>);
             })
           }
         </ul>
