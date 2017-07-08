@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ContactsListItem from './contacts_list_item';
 
 class Contacts extends React.Component {
   constructor(props) {
@@ -35,8 +36,9 @@ class Contacts extends React.Component {
       <div>
         <ul>
           {loading ? this.renderLoading :
-          contacts.map( (contact) => {
-              return(<li key={contact.birthdate}>{contact.name}</li>);
+            contacts.map( (contact) => {
+              return(<ContactsListItem
+                key={contact.birthdate} contact={contact} />);
             })
           }
         </ul>
