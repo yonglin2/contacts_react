@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ContactsListItem from './contacts_list_item';
+import ContactsDetail from './contacts_detail';
 
 class Contacts extends React.Component {
   constructor(props) {
@@ -8,10 +9,11 @@ class Contacts extends React.Component {
     this.state = {
       contacts: [],
       loading: true,
-      person: null
+      currentContact: null
     };
     this.fetchContacts = this.fetchContacts.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.renderLoading = this.renderLoading.bind(this);
   }
 
   componentDidMount(){
@@ -33,12 +35,11 @@ class Contacts extends React.Component {
   }
 
   handleClick(contact) {
-    this.setState({person: contact});
+    this.setState({currentContact: contact});
   }
 
   render() {
-    const { contacts, loading } = this.state;
-    console.log(this.state);
+    const { contacts, loading, currentContact } = this.state;
     return(
       <div>
         <ul>
@@ -51,6 +52,9 @@ class Contacts extends React.Component {
             })
           }
         </ul>
+        <div>
+          <ContactsDetail contact={this.state.currentContact}/>
+        </div>
       </div>
     );
   }
