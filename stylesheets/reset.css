@@ -1,4 +1,4 @@
-html, body, div, h1, h2, h3, h4, ul, li {
+html, body, div, h2, h3, ul, li {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -16,4 +16,14 @@ body {
 
 ol, ul {
 	list-style: none;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

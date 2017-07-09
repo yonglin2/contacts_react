@@ -15,32 +15,51 @@ class ContactsDetail extends React.Component {
     .toLocaleDateString('en-US', dateOptions);
     let formattedHomePhone = '(' + phone.home.slice(0, 3) + ')' +
     phone.home.slice(4);
+    const street = address.street.includes('#-') ? address.street.slice(0, address.street.indexOf('#')) 
+    : address.street;
+    const cityStateZip = `${address.city}, ${address.state} ${address.zip}`;
+    const suite = address.street.includes('#-') ?
+    `Suite ${address.street.slice(address.street.indexOf('-') + 1)}` : '';
 
     return(
       <div className='contacts-detail-container'>
         <div className='contacts-detail-top'>
           <img src={largeImageURL} alt={name}></img>
-          <h1>{name}</h1>
-          <div>Company: {company}</div>
+          <div className='contacts-detail-top-right'>
+            <h2>{name}</h2>
+            <div>
+              <h3>Company:</h3>
+              <h2>{company}</h2>
+            </div>
+          </div>
         </div>
 
         <div>
-          Phone: {formattedHomePhone}
+          Phone:
+          <span>
+            <h2>{formattedHomePhone}</h2>
+            <h2>Home</h2>
+            </span>
+        </div>
+
+        <div className='address'>
+          Address:
+          <h2>{street}</h2>
+          <h2>{suite}</h2>
+          <h2>{cityStateZip}</h2>
         </div>
 
         <div>
-          Address: {address.street}
-          {address.city},
-          {address.state}
-          {address.zip}
+          Birthday:
+          <h2>{birthday}</h2>
         </div>
 
         <div>
-          Birthday: {birthday}
-        </div>
-
-        <div>
-          Email: {email}
+          <span>
+            Email:
+            <h2>Work</h2>
+          </span>
+          <h2>{email}</h2>
         </div>
       </div>
     );

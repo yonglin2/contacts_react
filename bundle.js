@@ -24210,6 +24210,9 @@ var ContactsDetail = function (_React$Component) {
       var dateOptions = { month: 'long', day: 'numeric', year: 'numeric' };
       var birthday = new Date(parseInt(birthdate)).toLocaleDateString('en-US', dateOptions);
       var formattedHomePhone = '(' + phone.home.slice(0, 3) + ')' + phone.home.slice(4);
+      var street = address.street.includes('#-') ? address.street.slice(0, address.street.indexOf('#')) : address.street;
+      var cityStateZip = address.city + ', ' + address.state + ' ' + address.zip;
+      var suite = address.street.includes('#-') ? 'Suite ' + address.street.slice(address.street.indexOf('-') + 1) : '';
 
       return _react2.default.createElement(
         'div',
@@ -24219,44 +24222,96 @@ var ContactsDetail = function (_React$Component) {
           { className: 'contacts-detail-top' },
           _react2.default.createElement('img', { src: largeImageURL, alt: name }),
           _react2.default.createElement(
-            'h1',
-            null,
-            name
-          ),
-          _react2.default.createElement(
             'div',
-            null,
-            'Company: ',
-            company
+            { className: 'contacts-detail-top-right' },
+            _react2.default.createElement(
+              'h2',
+              null,
+              name
+            ),
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'h3',
+                null,
+                'Company:'
+              ),
+              _react2.default.createElement(
+                'h2',
+                null,
+                company
+              )
+            )
           )
         ),
         _react2.default.createElement(
           'div',
           null,
-          'Phone: ',
-          formattedHomePhone
+          'Phone:',
+          _react2.default.createElement(
+            'span',
+            null,
+            _react2.default.createElement(
+              'h2',
+              null,
+              formattedHomePhone
+            ),
+            _react2.default.createElement(
+              'h2',
+              null,
+              'Home'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'address' },
+          'Address:',
+          _react2.default.createElement(
+            'h2',
+            null,
+            street
+          ),
+          _react2.default.createElement(
+            'h2',
+            null,
+            suite
+          ),
+          _react2.default.createElement(
+            'h2',
+            null,
+            cityStateZip
+          )
         ),
         _react2.default.createElement(
           'div',
           null,
-          'Address: ',
-          address.street,
-          address.city,
-          ',',
-          address.state,
-          address.zip
+          'Birthday:',
+          _react2.default.createElement(
+            'h2',
+            null,
+            birthday
+          )
         ),
         _react2.default.createElement(
           'div',
           null,
-          'Birthday: ',
-          birthday
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          'Email: ',
-          email
+          _react2.default.createElement(
+            'span',
+            null,
+            'Email:',
+            _react2.default.createElement(
+              'h2',
+              null,
+              'Work'
+            )
+          ),
+          _react2.default.createElement(
+            'h2',
+            null,
+            email
+          )
         )
       );
     }
