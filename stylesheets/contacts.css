@@ -9,10 +9,10 @@
   bottom: 0;
   right: 0;
   overflow: scroll;
-  width: 25%;
-  height: 100%;
+  width: 35%;
+  height: 100vh;
 }
 
 .active {
-  background: red;
+  background: gray;
 }

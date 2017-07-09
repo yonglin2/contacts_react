@@ -5,10 +5,6 @@ class ContactsDetail extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
     if (!this.props.contact) return null;
 

@@ -24191,11 +24191,6 @@ var ContactsDetail = function (_React$Component) {
   }
 
   _createClass(ContactsDetail, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      console.log(this.props);
-    }
-  }, {
     key: 'render',
     value: function render() {
       if (!this.props.contact) return null;

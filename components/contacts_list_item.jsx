@@ -24,5 +24,4 @@ class ContactsListItem extends React.Component {
   }
 }
 
-
 export default ContactsListItem;
