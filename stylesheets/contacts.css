@@ -12,6 +12,25 @@
   height: 100vh;
 }
 
+.contacts-list-item {
+  background: lightgray;
+  border-top: 2px solid gray;
+  display: flex;
+  padding: 10px;
+}
+
 .active {
-  background: gray;
+  background: #f7bf17;
+}
+
+.contacts-list-item-right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  justify-content: space-around;
+}
+
+.contacts-list-item-name {
+  font-size: 20px;
+  font-weight: bold;
 }

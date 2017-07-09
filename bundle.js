@@ -24138,16 +24138,21 @@ var ContactsListItem = function (_React$Component) {
       return _react2.default.createElement(
         'li',
         { className: klass, onClick: this.handleClick },
-        _react2.default.createElement('img', { src: contact.smallImageURL, alt: contact.name }),
+        _react2.default.createElement('img', { className: 'contacts-list-item-img', src: contact.smallImageURL,
+          alt: contact.name }),
         _react2.default.createElement(
           'div',
-          null,
-          contact.name
-        ),
-        _react2.default.createElement(
-          'div',
-          null,
-          formatted_phone
+          { className: 'contacts-list-item-right' },
+          _react2.default.createElement(
+            'h2',
+            { className: 'contacts-list-item-name' },
+            contact.name
+          ),
+          _react2.default.createElement(
+            'div',
+            null,
+            formatted_phone
+          )
         )
       );
     }
