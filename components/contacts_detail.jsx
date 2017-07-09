@@ -5,7 +5,7 @@ class ContactsDetail extends React.Component {
     super(props);
   }
 
-  render(){
+  render() {
     if (!this.props.contact) return null;
 
     const { largeImageURL, name, company, phone, address, birthdate,

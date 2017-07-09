@@ -1,0 +1,14 @@
+.contacts-container {
+  display: flex;
+  flex-direction: row;
+  overflow-y: scroll;
+}
+
+.contacts-list {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: scroll;
+  width: 25%;
+  height: 500px;
+}

@@ -22503,10 +22503,10 @@ var Contacts = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'contacts-container' },
         _react2.default.createElement(
           'ul',
-          null,
+          { className: 'contacts-list' },
           loading ? this.renderLoading : contacts.map(function (contact, idx) {
             return _react2.default.createElement(
               'li',
@@ -22518,7 +22518,7 @@ var Contacts = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'contacts-detail' },
           _react2.default.createElement(_contacts_detail2.default, { contact: this.state.currentContact })
         )
       );
@@ -24106,6 +24106,7 @@ var ContactsListItem = function ContactsListItem(_ref) {
   return _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement('img', { src: contact.smallImageURL, alt: contact.name }),
     _react2.default.createElement(
       'div',
       null,
@@ -24120,8 +24121,6 @@ var ContactsListItem = function ContactsListItem(_ref) {
 };
 
 exports.default = ContactsListItem;
-
-// <img src={contact.smallImageURL} alt={contact.name} />
 
 /***/ }),
 /* 213 */

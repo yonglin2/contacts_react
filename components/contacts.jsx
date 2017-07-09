@@ -41,8 +41,8 @@ class Contacts extends React.Component {
   render() {
     const { contacts, loading, currentContact } = this.state;
     return(
-      <div>
-        <ul>
+      <div className='contacts-container'>
+        <ul className='contacts-list'>
           {loading ? this.renderLoading :
             contacts.map( (contact, idx) => {
               return(<li key={idx}
@@ -52,7 +52,7 @@ class Contacts extends React.Component {
             })
           }
         </ul>
-        <div>
+        <div className='contacts-detail'>
           <ContactsDetail contact={this.state.currentContact}/>
         </div>
       </div>
