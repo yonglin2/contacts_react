@@ -9,20 +9,17 @@ class Contacts extends React.Component {
     this.state = {
       contacts: [],
       loading: true,
-      currentContact: null
+      currentContact: null,
+      activeIndex: 0
     };
-    this.fetchContacts = this.fetchContacts.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-    this.renderLoading = this.renderLoading.bind(this);
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.fetchContacts();
   }
 
   fetchContacts() {
-    // Normally this would be done with a redux action, but I thought
-    // implementing a full redux would've been overkill for this project.
+    // Normally this would be done with a redux action
     const url = 'https://s3.amazonaws.com/technical-challenge/Contacts_v2.json';
     axios.get(url).then((response) => {
       const contacts = response.data;
@@ -34,26 +31,30 @@ class Contacts extends React.Component {
     return <div>Loading...</div>;
   }
 
-  handleClick(contact) {
+  handleContactSelect(contact, activeIndex) {
     this.setState({currentContact: contact});
   }
 
   render() {
-    const { contacts, loading, currentContact } = this.state;
-    return(
+    const { contacts, loading, currentContact, activeIndex } = this.state;
+    return (
       <div className='contacts-container'>
-        <ul className='contacts-list'>
-          {loading ? this.renderLoading :
-            contacts.map( (contact, idx) => {
-              return(<li key={idx}
-                onClick={this.handleClick.bind(this, contact)}>
-                <ContactsListItem contact={contact} />
-              </li>);
-            })
-          }
-        </ul>
+        {loading ? this.renderLoading :
+          <ul className='contacts-list'>
+            {contacts.map( (contact, idx) => {
+              return (
+                <ContactsListItem
+                  key={idx}
+                  index={idx}
+                  onClick={this.handleContactSelect}
+                  contact={contact} />
+              );
+            })}
+          </ul>
+        }
+
         <div className='contacts-detail'>
-          <ContactsDetail contact={this.state.currentContact}/>
+          <ContactsDetail contact={contacts[activeIndex]}/>
         </div>
       </div>
     );

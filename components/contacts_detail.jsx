@@ -5,6 +5,10 @@ class ContactsDetail extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   render() {
     if (!this.props.contact) return null;
 
@@ -14,7 +18,6 @@ class ContactsDetail extends React.Component {
     const birthday = new Date(parseInt(birthdate))
     .toLocaleDateString('en-US', dateOptions);
 
-    console.log(this.props);
     return(
       <div>
         <div>

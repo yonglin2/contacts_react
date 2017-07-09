@@ -22451,11 +22451,9 @@ var Contacts = function (_React$Component) {
     _this.state = {
       contacts: [],
       loading: true,
-      currentContact: null
+      currentContact: null,
+      activeIndex: 0
     };
-    _this.fetchContacts = _this.fetchContacts.bind(_this);
-    _this.handleClick = _this.handleClick.bind(_this);
-    _this.renderLoading = _this.renderLoading.bind(_this);
     return _this;
   }
 
@@ -22469,8 +22467,7 @@ var Contacts = function (_React$Component) {
     value: function fetchContacts() {
       var _this2 = this;
 
-      // Normally this would be done with a redux action, but I thought
-      // implementing a full redux would've been overkill for this project.
+      // Normally this would be done with a redux action
       var url = 'https://s3.amazonaws.com/technical-challenge/Contacts_v2.json';
       _axios2.default.get(url).then(function (response) {
         var contacts = response.data;
@@ -22487,8 +22484,8 @@ var Contacts = function (_React$Component) {
       );
     }
   }, {
-    key: 'handleClick',
-    value: function handleClick(contact) {
+    key: 'handleContactSelect',
+    value: function handleContactSelect(contact, activeIndex) {
       this.setState({ currentContact: contact });
     }
   }, {
@@ -22499,27 +22496,27 @@ var Contacts = function (_React$Component) {
       var _state = this.state,
           contacts = _state.contacts,
           loading = _state.loading,
-          currentContact = _state.currentContact;
+          currentContact = _state.currentContact,
+          activeIndex = _state.activeIndex;
 
       return _react2.default.createElement(
         'div',
         { className: 'contacts-container' },
-        _react2.default.createElement(
+        loading ? this.renderLoading : _react2.default.createElement(
           'ul',
           { className: 'contacts-list' },
-          loading ? this.renderLoading : contacts.map(function (contact, idx) {
-            return _react2.default.createElement(
-              'li',
-              { key: idx,
-                onClick: _this3.handleClick.bind(_this3, contact) },
-              _react2.default.createElement(_contacts_list_item2.default, { contact: contact })
-            );
+          contacts.map(function (contact, idx) {
+            return _react2.default.createElement(_contacts_list_item2.default, {
+              key: idx,
+              index: idx,
+              onClick: _this3.handleContactSelect,
+              contact: contact });
           })
         ),
         _react2.default.createElement(
           'div',
           { className: 'contacts-detail' },
-          _react2.default.createElement(_contacts_detail2.default, { contact: this.state.currentContact })
+          _react2.default.createElement(_contacts_detail2.default, { contact: contacts[activeIndex] })
         )
       );
     }
@@ -24157,6 +24154,11 @@ var ContactsDetail = function (_React$Component) {
   }
 
   _createClass(ContactsDetail, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log(this.props);
+    }
+  }, {
     key: 'render',
     value: function render() {
       if (!this.props.contact) return null;
@@ -24173,7 +24175,6 @@ var ContactsDetail = function (_React$Component) {
       var dateOptions = { month: 'long', day: 'numeric', year: 'numeric' };
       var birthday = new Date(parseInt(birthdate)).toLocaleDateString('en-US', dateOptions);
 
-      console.log(this.props);
       return _react2.default.createElement(
         'div',
         null,
