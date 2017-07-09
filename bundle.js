@@ -22451,9 +22451,9 @@ var Contacts = function (_React$Component) {
     _this.state = {
       contacts: [],
       loading: true,
-      currentContact: null,
       activeIndex: 0
     };
+    _this.handleContactSelect = _this.handleContactSelect.bind(_this);
     return _this;
   }
 
@@ -22485,8 +22485,8 @@ var Contacts = function (_React$Component) {
     }
   }, {
     key: 'handleContactSelect',
-    value: function handleContactSelect(contact, activeIndex) {
-      this.setState({ currentContact: contact });
+    value: function handleContactSelect(activeIndex) {
+      this.setState({ activeIndex: activeIndex });
     }
   }, {
     key: 'render',
@@ -22496,8 +22496,8 @@ var Contacts = function (_React$Component) {
       var _state = this.state,
           contacts = _state.contacts,
           loading = _state.loading,
-          currentContact = _state.currentContact,
           activeIndex = _state.activeIndex;
+
 
       return _react2.default.createElement(
         'div',
@@ -22509,7 +22509,8 @@ var Contacts = function (_React$Component) {
             return _react2.default.createElement(_contacts_list_item2.default, {
               key: idx,
               index: idx,
-              onClick: _this3.handleContactSelect,
+              handleContactSelect: _this3.handleContactSelect,
+              active: idx === activeIndex,
               contact: contact });
           })
         ),
@@ -24092,30 +24093,66 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(82);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ContactsListItem = function ContactsListItem(_ref) {
-  var contact = _ref.contact;
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement('img', { src: contact.smallImageURL, alt: contact.name }),
-    _react2.default.createElement(
-      'div',
-      null,
-      contact.name
-    ),
-    _react2.default.createElement(
-      'div',
-      null,
-      contact.phone.work
-    )
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ContactsListItem = function (_React$Component) {
+  _inherits(ContactsListItem, _React$Component);
+
+  function ContactsListItem(props) {
+    _classCallCheck(this, ContactsListItem);
+
+    var _this = _possibleConstructorReturn(this, (ContactsListItem.__proto__ || Object.getPrototypeOf(ContactsListItem)).call(this, props));
+
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(ContactsListItem, [{
+    key: 'handleClick',
+    value: function handleClick() {
+      this.props.handleContactSelect(this.props.index);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props = this.props,
+          contact = _props.contact,
+          active = _props.active;
+
+      var klass = active ? 'contacts-list-item active' : 'contacts-list-item';
+
+      return _react2.default.createElement(
+        'li',
+        { className: klass, onClick: this.handleClick },
+        _react2.default.createElement('img', { src: contact.smallImageURL, alt: contact.name }),
+        _react2.default.createElement(
+          'div',
+          null,
+          contact.name
+        ),
+        _react2.default.createElement(
+          'div',
+          null,
+          contact.phone.work
+        )
+      );
+    }
+  }]);
+
+  return ContactsListItem;
+}(_react2.default.Component);
 
 exports.default = ContactsListItem;
 
@@ -24230,20 +24267,6 @@ var ContactsDetail = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = ContactsDetail;
-
-// largeImageURL
-// name
-// company
-//
-// phone
-// address
-//
-// birthday
-//
-// email
-
-// 1382659557
-// 558289857
 
 /***/ })
 /******/ ]);

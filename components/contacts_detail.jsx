@@ -50,18 +50,3 @@ class ContactsDetail extends React.Component {
 }
 
 export default ContactsDetail;
-
-
-// largeImageURL
-// name
-// company
-//
-// phone
-// address
-//
-// birthday
-//
-// email
-
-// 1382659557
-// 558289857

@@ -9,9 +9,9 @@ class Contacts extends React.Component {
     this.state = {
       contacts: [],
       loading: true,
-      currentContact: null,
       activeIndex: 0
     };
+    this.handleContactSelect = this.handleContactSelect.bind(this);
   }
 
   componentDidMount() {
@@ -31,12 +31,13 @@ class Contacts extends React.Component {
     return <div>Loading...</div>;
   }
 
-  handleContactSelect(contact, activeIndex) {
-    this.setState({currentContact: contact});
+  handleContactSelect(activeIndex) {
+    this.setState({activeIndex});
   }
 
   render() {
-    const { contacts, loading, currentContact, activeIndex } = this.state;
+    const { contacts, loading, activeIndex } = this.state;
+    
     return (
       <div className='contacts-container'>
         {loading ? this.renderLoading :
@@ -46,7 +47,8 @@ class Contacts extends React.Component {
                 <ContactsListItem
                   key={idx}
                   index={idx}
-                  onClick={this.handleContactSelect}
+                  handleContactSelect={this.handleContactSelect}
+                  active={idx === activeIndex}
                   contact={contact} />
               );
             })}
