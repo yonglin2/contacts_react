@@ -4,12 +4,9 @@
 }
 
 .contacts-list {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  overflow: scroll;
   width: 35%;
   height: 100vh;
+  overflow: scroll;
 }
 
 .contacts-list-item {
@@ -33,4 +30,11 @@
 .contacts-list-item-name {
   font-size: 20px;
   font-weight: bold;
+}
+
+.contacts-detail-container {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

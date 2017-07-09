@@ -22514,11 +22514,7 @@ var Contacts = function (_React$Component) {
               contact: contact });
           })
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'contacts-detail-container' },
-          _react2.default.createElement(_contacts_detail2.default, { contact: contacts[activeIndex] })
-        )
+        _react2.default.createElement(_contacts_detail2.default, { contact: contacts[activeIndex] })
       );
     }
   }]);
@@ -24213,13 +24209,14 @@ var ContactsDetail = function (_React$Component) {
 
       var dateOptions = { month: 'long', day: 'numeric', year: 'numeric' };
       var birthday = new Date(parseInt(birthdate)).toLocaleDateString('en-US', dateOptions);
+      var formattedHomePhone = '(' + phone.home.slice(0, 3) + ')' + phone.home.slice(4);
 
       return _react2.default.createElement(
         'div',
-        null,
+        { className: 'contacts-detail-container' },
         _react2.default.createElement(
           'div',
-          null,
+          { className: 'contacts-detail-top' },
           _react2.default.createElement('img', { src: largeImageURL, alt: name }),
           _react2.default.createElement(
             'h1',
@@ -24237,7 +24234,7 @@ var ContactsDetail = function (_React$Component) {
           'div',
           null,
           'Phone: ',
-          phone.home
+          formattedHomePhone
         ),
         _react2.default.createElement(
           'div',

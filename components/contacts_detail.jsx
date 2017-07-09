@@ -13,17 +13,19 @@ class ContactsDetail extends React.Component {
     const dateOptions = {month: 'long', day: 'numeric', year: 'numeric'};
     const birthday = new Date(parseInt(birthdate))
     .toLocaleDateString('en-US', dateOptions);
+    let formattedHomePhone = '(' + phone.home.slice(0, 3) + ')' +
+    phone.home.slice(4);
 
     return(
-      <div>
-        <div>
+      <div className='contacts-detail-container'>
+        <div className='contacts-detail-top'>
           <img src={largeImageURL} alt={name}></img>
           <h1>{name}</h1>
           <div>Company: {company}</div>
         </div>
 
         <div>
-          Phone: {phone.home}
+          Phone: {formattedHomePhone}
         </div>
 
         <div>

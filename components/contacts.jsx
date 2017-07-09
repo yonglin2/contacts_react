@@ -55,9 +55,7 @@ class Contacts extends React.Component {
           </ul>
         }
 
-        <div className='contacts-detail-container'>
-          <ContactsDetail contact={contacts[activeIndex]}/>
-        </div>
+        <ContactsDetail contact={contacts[activeIndex]}/>
       </div>
     );
   }
