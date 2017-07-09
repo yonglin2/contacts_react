@@ -37,7 +37,7 @@ class Contacts extends React.Component {
 
   render() {
     const { contacts, loading, activeIndex } = this.state;
-    
+
     return (
       <div className='contacts-container'>
         {loading ? this.renderLoading :
@@ -55,7 +55,7 @@ class Contacts extends React.Component {
           </ul>
         }
 
-        <div className='contacts-detail'>
+        <div className='contacts-detail-container'>
           <ContactsDetail contact={contacts[activeIndex]}/>
         </div>
       </div>

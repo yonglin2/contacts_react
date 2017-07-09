@@ -22516,7 +22516,7 @@ var Contacts = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'contacts-detail' },
+          { className: 'contacts-detail-container' },
           _react2.default.createElement(_contacts_detail2.default, { contact: contacts[activeIndex] })
         )
       );
@@ -24131,6 +24131,8 @@ var ContactsListItem = function (_React$Component) {
           contact = _props.contact,
           active = _props.active;
 
+      var phone = contact.phone.work;
+      var formatted_phone = '(' + phone.slice(0, 3) + ')' + phone.slice(4);
       var klass = active ? 'contacts-list-item active' : 'contacts-list-item';
 
       return _react2.default.createElement(
@@ -24145,7 +24147,7 @@ var ContactsListItem = function (_React$Component) {
         _react2.default.createElement(
           'div',
           null,
-          contact.phone.work
+          formatted_phone
         )
       );
     }

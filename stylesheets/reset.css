@@ -6,15 +6,12 @@ html, body, div, h1, h2, h3, h4, ul, li {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
+
 body {
   font-family: sans-serif;
 	line-height: 1;
 }
+
 ol, ul {
 	list-style: none;
 }
