@@ -37,7 +37,6 @@ class Contacts extends React.Component {
 
   render() {
     const { contacts, loading, activeIndex } = this.state;
-
     return (
       <div className='contacts-container'>
         {loading ? this.renderLoading :
