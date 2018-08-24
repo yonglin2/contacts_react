@@ -40,7 +40,7 @@ class Contacts extends React.Component {
 
     return (
       <div className='contacts-container'>
-        {loading ? this.renderLoading :
+        {loading ? this.renderLoading() :
           <ul className='contacts-list'>
             {contacts.map( (contact, idx) => {
               return (
